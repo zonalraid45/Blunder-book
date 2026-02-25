@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blunder Book - Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#0b0f14;color:#fff}
+.nav{display:flex;justify-content:space-between;padding:20px 40px;border-bottom:1px solid #1f2937}
+.logo{color:#3b82f6;font-weight:700;font-size:20px}
+.nav-right{display:flex;gap:25px;align-items:center}
+.logout{color:#ef4444;cursor:pointer}
+.container{max-width:1100px;margin:auto;padding:60px 20px}
+h1{font-size:32px;margin-bottom:10px}
+.username{color:#3b82f6;margin-bottom:40px}
+.cards{display:flex;gap:20px;flex-wrap:wrap}
+.card{background:#111827;padding:25px;border-radius:12px;border:1px solid #1f2937;width:200px}
+.card h3{font-size:14px;color:#9ca3af;margin-bottom:10px}
+.card p{font-size:28px;font-weight:600}
+.sync-box{margin-top:60px;background:#111827;padding:30px;border-radius:12px;border:1px solid #1f2937;max-width:600px}
+.sync-btn{margin-top:20px;background:#3b82f6;padding:12px 20px;border:none;border-radius:8px;color:white;cursor:pointer}
+.sync-btn:hover{background:#2563eb}
+</style>
+</head>
+<body>
+
+<div class="nav">
+<div class="logo">Blunder Book</div>
+<div class="nav-right">
+<div id="navUser"></div>
+<div class="logout" onclick="logout()">Logout</div>
+</div>
+</div>
+
+<div class="container">
+<h1>Dashboard</h1>
+<div class="username" id="username"></div>
+
+<div class="cards">
+<div class="card">
+<h3>Games Imported</h3>
+<p id="games">0</p>
+</div>
+<div class="card">
+<h3>Puzzles Created</h3>
+<p>0</p>
+</div>
+<div class="card">
+<h3>Puzzles Trained</h3>
+<p>0</p>
+</div>
+<div class="card">
+<h3>Accuracy</h3>
+<p>0%</p>
+</div>
+</div>
+
+<div class="sync-box">
+<h3>Import Games</h3>
+<p>Fetch your recent games from Lichess.</p>
+<button class="sync-btn" onclick="fetchGames()">Sync from Lichess</button>
+</div>
+</div>
+
+<script>
+const token=localStorage.getItem("lichess_token")
+if(!token){window.location.href="index.html"}
+
+async function loadProfile(){
+const res=await fetch("https://lichess.org/api/account",{headers:{"Authorization":"Bearer "+token}})
+const data=await res.json()
+document.getElementById("username").innerText=data.username
+document.getElementById("navUser").innerText=data.username
+}
+
+async function fetchGames(){
+const res=await fetch("https://lichess.org/api/games/user/me?max=10",{
+headers:{
+"Authorization":"Bearer "+token,
+"Accept":"application/x-ndjson"
+}
+})
+const text=await res.text()
+const count=text.trim()?text.trim().split("\n").length:0
+document.getElementById("games").innerText=count
+}
+
+function logout(){
+localStorage.removeItem("lichess_token")
+window.location.href="index.html"
+}
+
+loadProfile()
+</script>
+
+</body>
+</html>
