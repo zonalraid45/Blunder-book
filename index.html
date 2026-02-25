@@ -175,11 +175,15 @@ const clientId = "blunder-book";
 const redirectUri = "https://zonalraid45.github.io/Blunder-book/";
 const scope = "preference:read";
 
+if (localStorage.getItem("lichess_token")) {
+  window.location.href = "dashboard.html";
+}
+
 function randomString(length) {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   let result = "";
-  for (let i=0;i<length;i++) {
-    result += chars.charAt(Math.floor(Math.random()*chars.length));
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
   }
   return result;
 }
@@ -214,24 +218,17 @@ async function exchange(code) {
   const verifier = localStorage.getItem("verifier");
 
   const res = await fetch("https://lichess.org/api/token", {
-    method:"POST",
-    headers:{ "Content-Type":"application/x-www-form-urlencoded" },
-    body:new URLSearchParams({
-      grant_type:"authorization_code",
-      code:code,
-      redirect_uri:redirectUri,
-      client_id:clientId,
-      code_verifier:verifier
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      grant_type: "authorization_code",
+      code: code,
+      redirect_uri: redirectUri,
+      client_id: clientId,
+      code_verifier: verifier
     })
   });
 
-  return await res.json();
-}
-
-async function fetchProfile(token) {
-  const res = await fetch("https://lichess.org/api/account", {
-    headers:{ "Authorization":"Bearer "+token }
-  });
   return await res.json();
 }
 
@@ -239,16 +236,16 @@ async function init() {
   const params = new URLSearchParams(window.location.search);
   const code = params.get("code");
 
-  if(code){
+  if (code) {
     const tokenData = await exchange(code);
-    const profile = await fetchProfile(tokenData.access_token);
-    document.getElementById("user").innerText =
-      "Logged in as: " + profile.username;
+    localStorage.setItem("lichess_token", tokenData.access_token);
+    window.history.replaceState({}, document.title, "/Blunder-book/");
+    window.location.href = "dashboard.html";
   }
 }
 
 init();
 </script>
-
+  
 </body>
 </html>
