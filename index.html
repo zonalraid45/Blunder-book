@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blunder Book - Blue Mode</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: #0b0f14;
+  color: #ffffff;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+  background: #0f172a;
+  color: #3b82f6;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #3b82f6;
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+h1 span {
+  color: #3b82f6;
+}
+
+.subtext {
+  color: #9ca3af;
+  font-size: 16px;
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+  line-height: 1.6;
+}
+
+.btn {
+  display: inline-block;
+  background: #3b82f6;
+  color: #ffffff;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #2563eb;
+}
+
+.login-note {
+  margin-top: 12px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #6b7280;
+  letter-spacing: 0.5px;
+}
+
+.features {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 60px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: #111827;
+  padding: 25px;
+  border-radius: 12px;
+  width: 300px;
+  text-align: left;
+  border: 1px solid #1f2937;
+}
+
+.card:hover {
+  border-color: #3b82f6;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  color: #3b82f6;
+}
+
+.card p {
+  color: #9ca3af;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.steps {
+  margin-top: 80px;
+}
+
+.step {
+  background: #111827;
+  border: 1px solid #1f2937;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 15px auto;
+  max-width: 600px;
+  text-align: left;
+}
+
+.step-number {
+  background: #3b82f6;
+  color: #ffffff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.footer-text {
+  margin-top: 80px;
+  font-size: 18px;
+  color: #9ca3af;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="badge">PERSONALIZED CHESS TRAINING</div>
+
+  <h1>
+    Stop solving random puzzles.<br>
+    Fix <span>your</span> blunders.
+  </h1>
+
+  <p class="subtext">
+    Blunder Book imports your games, finds every mistake you made,
+    and turns them into puzzles you can drill until they stick.
+    Targeted training based on patterns you actually miss.
+  </p>
+
+  <a href="#" class="btn">Login with Lichess →</a>
+
+  <h6 class="login-note">
+    Free to start · No password needed · Read-only access
+  </h6>
+
+  <div class="features">
+    <div class="card">
+      <h3>Your Games, Your Puzzles</h3>
+      <p>Every puzzle comes from mistakes in your own games. No generic positions — just the tactics you need.</p>
+    </div>
+
+    <div class="card">
+      <h3>Targeted Training</h3>
+      <p>Puzzles are generated when you miss tactics you actually struggle with. Train smarter, improve faster.</p>
+    </div>
+
+    <div class="card">
+      <h3>Spaced Repetition</h3>
+      <p>Puzzles return until mastered. Once learned, they fade away. Training adapts to you.</p>
+    </div>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <span class="step-number">1</span>
+      Connect your Lichess account
+    </div>
+
+    <div class="step">
+      <span class="step-number">2</span>
+      Import & analyze your games
+    </div>
+
+    <div class="step">
+      <span class="step-number">3</span>
+      Drill your weaknesses
+    </div>
+  </div>
+
+  <div class="footer-text">
+    Your blunders are waiting.
+  </div>
+
+</div>
+
+</body>
+</html>
